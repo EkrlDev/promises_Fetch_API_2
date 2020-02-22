@@ -1,0 +1,1 @@
+These are the continious parts of my studies on fetch,API,promises  

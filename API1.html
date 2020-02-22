@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetc API-1</title>
+</head>
+<body>
+   <img src="" id="rainbow"/>
+   <script>
+       fetch('rainbow.jpg')//first fetc data
+       .then(response => {//second look in the resolved promise response and find the needed data
+           console.log(response);
+           return response.blob()//making an action to convert response to a image so we will call another async function with second .than 
+       })
+       .then(blob => {//third make needed action with the retreived data
+           console.log(blob);//when convert completed call the log function and now response is a blob object.
+           document.getElementById('rainvbow').src = URL.createObjectURL(blob);//the source of the data is retreived image vithin the data
+       })
+       .catch(error => {
+           console.error(error);
+       })
+       //*********instead of all above we can use async/await features with fetch
+
+       async function getRainbow(){
+           const response = await fetch('rainbow.jpg');//we use the await function for assign the response of fetch function to response variable. Because fetch is an async function we use await 
+           const blob = await response.blob();
+           document.getElementById('rainbow').src = URL.createObjectURL(blob);
+       }
+       getRainbow()
+       .then (console.log ('yay its working!'))//get rainbow is an async function so we can use .than also after it
+       .catch(error => {
+           console.error(error);
+       });
+   </script> 
+</body>
+</html>
