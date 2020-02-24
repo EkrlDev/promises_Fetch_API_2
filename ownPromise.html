@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Your Own Promise</title>
+</head>
+<body>
+    <p id="myword"></p>
+    <script>
+        
+        
+        function delay(time) {
+            return new Promise((resolve, reject) => {//it return a promise with two parameters "resolve" and "reject" and after we define what it will do in case of resolve and reject
+                if(isNaN(time)) {
+                    reject(new Error('delay requres a number'));
+                } else {
+                setTimeout(resolve, time);
+                }
+            });
+        }
+
+       
+        function setUp(){
+            delay(2000)
+            .then(() => document.getElementById('myword').innerText = 'Hello Dude!')//console.log('hello'))
+            .catch((err) => console.error(err))
+        }
+        setUp();
+        
+        
+        /*function setUp(){
+            delay(2000)
+        }
+        function delay(time) {
+            setTimeout(sayHello, time)
+        }
+        function sayHello() {
+            document.getElementById('myword').textContent = 'Hello Dude!'; 
+        }
+        setUp();*/
+    </script>
+</body>
+</html>
